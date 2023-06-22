@@ -4,7 +4,7 @@ export class NewsItem extends Component {
   render() {
     let {title, description, imageUrl, url} = this.props;
     return (
-      <div className="container my-3 mx-5"> 
+      <div className="container my-3 px-5"> 
         <div className="card" style={{width: "18rem"}}>
           <img src={imageUrl} className="card-img-top" alt="..." />
           <div className="card-body">
@@ -12,7 +12,7 @@ export class NewsItem extends Component {
             <p className="card-text">
               {description}...
             </p>
-            <a href={url} target="_blank" rel="noreferrer" className="btn btn-primary">
+            <a href={url} target="_blank" rel="noreferrer" className="btn btn-dark">
               Read more
             </a>
           </div>

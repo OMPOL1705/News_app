@@ -8,12 +8,12 @@ export class NewsItem extends Component {
         <div className="card" style={{width: "18rem"}}>
           <img src={imageUrl} className="card-img-top" alt="..." />
           <div className="card-body">
-          <span class="badge text-bg-info">{source}</span>
+          <span className="badge text-bg-primary">{source}</span>
             <h5 className="card-title" style={{marginTop:'0.5rem'}}>{title}...</h5>
             <p className="card-text">
               {description}...</p>
             
-            <p class="card-text"><small class="text-body-secondary">By {author} on {new Date(date).toGMTString()}</small></p>
+            <p className="card-text"><small className="text-body-secondary">By {author} on {new Date(date).toGMTString()}</small></p>
             <a href={url} target="_blank" rel="noreferrer" className="btn btn-dark btn-sm">
               Read more
             </a>

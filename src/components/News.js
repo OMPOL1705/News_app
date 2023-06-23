@@ -80,8 +80,9 @@ export class News extends Component {
         <div className="row">
           {!this.state.loading && this.state.articles.map((element) => {
             return <div className="col-md-3 mx-4" key={element.url}>
-            <NewsItem title={element.title?element.title.slice(0,45):""} description={element.description?element.description.slice(0,130):""} 
-            imageUrl={element.urlToImage?element.urlToImage:"https://media.zenfs.com/en/afp.com/4746c755d1190025e8cb0d8dd5e7f322"} url={element.url}/>
+            <NewsItem title={element.title?element.title.slice(0,45):""} source={element.source.name} description={element.description?element.description.slice(0,130):""} 
+            imageUrl={element.urlToImage?element.urlToImage:"https://media.zenfs.com/en/afp.com/4746c755d1190025e8cb0d8dd5e7f322"} url={element.url}
+            author={element.author?element.author:"Unknown"} date={element.publishedAt}/>
             </div>
           })}
         </div>

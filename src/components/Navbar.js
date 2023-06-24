@@ -8,7 +8,7 @@ const Navbar = () => {
     return (
       <>
         <div>
-          <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="dark">
+          <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="dark" style={{width:'100%'}}>
             <div className="container-fluid">
               <Link className="navbar-brand" to="/">
                 NewsMonkey

@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 
-export class NewsItem extends Component {
-  render() {
-    let {title, description, imageUrl, url, author, date, source} = this.props;
+const NewsItem = (props) => {
+  
+    let {title, description, imageUrl, url, author, date, source} = props;
     return (
-      <div className="container my-3 px-5"> 
+      <div className="carded container my-3 px-5"> 
         <div className="card" style={{width: "18rem"}}>
           <img src={imageUrl} className="card-img-top" alt="..." />
           <div className="card-body">
@@ -21,7 +21,7 @@ export class NewsItem extends Component {
         </div>
       </div>
     );
-  }
+ 
 }
 
 export default NewsItem;

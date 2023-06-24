@@ -32,8 +32,9 @@ export class News extends Component {
     document.title = `NewsMonkey - ${this.capitalizeFirstLetter(this.props.category)}`;
   }
 
-  async componentDidMount(){
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=0ccd349fa834435eaf497e217fa68f7c&page=1&pageSize=${this.props.pageSize}`;
+    updateNews = async () => {
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=0ccd349fa834435eaf497e217fa68f7c&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    console.log(url);
     this.setState({
       loading:true
     })
@@ -42,37 +43,28 @@ export class News extends Component {
     this.setState({articles : parsedData.articles, totalResults:parsedData.totalResults, loading:false})
   }
 
+  async componentDidMount(){
+    await this.updateNews();
+  }
+
   handlePrevClick = async () => {
-    
-      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=0ccd349fa834435eaf497e217fa68f7c&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
-      this.setState({
-        loading:true
-      })
-    let data = await fetch(url);
-    let parsedData = await data.json();
-  
-    this.setState({
-      page: this.state.page - 1,
-      articles : parsedData.articles,
-      loading: false
-    })
+    const prevPage = this.state.page - 1;
+  this.setState(
+    { page: prevPage },
+    () => this.updateNews()
+  );
   }
 
   handleNextClick = async () => {
-    if(!(this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize))){
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=0ccd349fa834435eaf497e217fa68f7c&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
-    this.setState({
-      loading:true
-    })
-    let data = await fetch(url);
-    let parsedData = await data.json();
-   
-    this.setState({
-      page: this.state.page + 1,
-      articles : parsedData.articles,
-      loading: false
-    })
+    const nextPage = this.state.page + 1;
+  if (nextPage > Math.ceil(this.state.totalResults / this.props.pageSize)) {
+    return; // Don't fetch if the next page exceeds the total number of pages
   }
+
+  this.setState(
+    { page: nextPage },
+    () => this.updateNews()
+  );
   }
   
 
